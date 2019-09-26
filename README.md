@@ -29,9 +29,9 @@ If you want to extend or change the Docker image you can develop it locally usin
 
 ### local docker build
 
-**`git clone https://github.com/devops4me/docker-gollum-wiki`**
-**`cd docker-gollum-wiki`**
-**`docker build --no-cache --rm --tag img.wiki .`**
+    git clone https://github.com/devops4me/docker-gollum-wiki
+    cd docker-gollum-wiki
+    docker build --no-cache --rm --tag img.wiki .
 
 
 ### local docker run
