@@ -51,6 +51,19 @@ RUN gem install     \
     gollum          \
     kramdown
 
+
+# --->
+# ---> Pull in the initialize script and give run permissions
+# --->
+
+COPY gollum-wiki-start.sh /var/opt/gollum
+RUN chmod a+x /var/opt/gollum/gollum-wiki-start.sh
+
+
+# --->
+# ---> Now switch to the lesser permissioned gollum user
+# --->
+
 USER gollum
 WORKDIR /var/opt/gollum
 
@@ -64,22 +77,9 @@ RUN git config --global user.email "apollo@devopswiki.co.uk" && \
 
 
 # --->
-# ---> Pull in the initialize script and give run permissions
-# --->
-
-COPY gollum-wiki-start.sh .
-RUN chmod u+x gollum-wiki-start.sh
-
-
-# --->
-# ---> docker run invokes the cert authority manager
+# ---> Kick off the script within /var/opt/gollum when the
+# ---> docker run command is issued.
 # --->
 
 WORKDIR /var/opt/gollum
-ENTRYPOINT [ "gollum-wiki-start.sh" ]
-
-###### WORKDIR /var/opt/gollum/wiki.content.repo
-###### ENTRYPOINT [ "./../gollum-wiki-start.sh" ]
-
-############ RUN export GIT_SSL_NO_VERIFY=1 && git clone https://www.devops-hub.com/content/devops.wiki.git git.repository
-############ ENTRYPOINT ["gollum","--config","/var/opt/gollum/config.rb"]
+ENTRYPOINT [ "/var/opt/gollum/gollum-wiki-start.sh" ]

@@ -26,5 +26,4 @@ echo "### Run the Gollum Wiki service using the specified configuration. ###"
 echo "### ############################################################## ###"
 echo ""
 
-gollum --config "/var/opt/gollum/config.rb"
-
+cd wiki.content.repo && gollum --config=/var/opt/gollum/config.rb
