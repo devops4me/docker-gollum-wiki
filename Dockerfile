@@ -62,11 +62,24 @@ WORKDIR /var/opt/gollum
 RUN git config --global user.email "apollo@devopswiki.co.uk" && \
     git config --global user.name "Wiki User"
 
+
+# --->
+# ---> Pull in the initialize script and give run permissions
+# --->
+
+COPY gollum-wiki-start.sh .
+RUN chmod u+x gollum-wiki-start.sh
+
+
+# --->
+# ---> docker run invokes the cert authority manager
+# --->
+
+WORKDIR /var/opt/gollum
+ENTRYPOINT [ "gollum-wiki-start.sh" ]
+
+###### WORKDIR /var/opt/gollum/wiki.content.repo
+###### ENTRYPOINT [ "./../gollum-wiki-start.sh" ]
+
 ############ RUN export GIT_SSL_NO_VERIFY=1 && git clone https://www.devops-hub.com/content/devops.wiki.git git.repository
-
-# --- ------------------------------------------------------ --- #
-# --- Run [gollum] on entry from the cloned Git root folder. --- #
-# --- ------------------------------------------------------ --- #
-WORKDIR /var/opt/gollum/git.repository
-
-ENTRYPOINT ["gollum","--config","/var/opt/gollum/config.rb"]
+############ ENTRYPOINT ["gollum","--config","/var/opt/gollum/config.rb"]
