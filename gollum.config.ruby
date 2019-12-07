@@ -7,6 +7,7 @@ wiki_options = {
  :universal_toc    => false,
  :user_icons       => 'gravatar',
  :template_dir     => 'templates',
+ :page_file_dir    => 'wiki',
  :live_preview     => true,
  :allow_uploads    => false,
  :per_page_uploads => false,
