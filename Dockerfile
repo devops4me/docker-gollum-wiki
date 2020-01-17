@@ -53,14 +53,6 @@ RUN gem install     \
 
 
 # --->
-# ---> Pull in the initialize script and give run permissions
-# --->
-
-COPY gollum-wiki-start.sh /var/opt/gollum
-RUN chmod a+x /var/opt/gollum/gollum-wiki-start.sh
-
-
-# --->
 # ---> Now switch to the lesser permissioned gollum user
 # --->
 
