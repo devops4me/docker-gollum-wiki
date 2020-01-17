@@ -47,29 +47,7 @@ If you want to extend or change the Docker image you can develop it locally usin
 
 ### local docker build
 
-    git clone https://github.com/devops4me/docker-gollum-wiki
-    cd docker-gollum-wiki
+    git clone https://github.com/devops4me/docker-wiki
+    cd docker-wiki
     docker build --no-cache --rm --tag img.wiki .
 
-
-### local docker run
-
-```
-docker run \
-    --detach \
-    --name vm.wiki \
-    --publish 4567:4567 \
-    --env WIKI_CONTENT_REPO_URL=https://github.com/apolloakora/devops-wiki \
-    img.wiki
-docker logs vm.wiki
-```
-
-Now visit **`http://localhost:4567/`** to browse the WiKI locally. Amend things to your liking and then push the docker image to the repository of your choice. After that you can run the website inside application docker cluster managers like Kubernetes or ECS.
-
-You may wish (for troubleshooting) to look inside the container to check out the state of affairs.
-
-```
-docker exec -it vm.wiki cat ../config.rb
-docker rmi img.wiki
-docker rm -vf vm.wiki
-```
