@@ -81,4 +81,4 @@ RUN git config --global user.email "apollo@devopswiki.co.uk" && \
 # ---> docker run command is issued.
 # --->
 
-ENTRYPOINT [ "gollum --config=/var/opt/gollum/config.rb" ]
+ENTRYPOINT [ "gollum", "--config=/var/opt/gollum/config.rb" ]
