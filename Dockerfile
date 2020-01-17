@@ -73,7 +73,7 @@ WORKDIR /var/opt/gollum
 # --->
 
 RUN git config --global user.email "apollo@devopswiki.co.uk" && \
-    git config --global user.name "Wiki User"
+    git config --global user.name "Apollo Akora"
 
 
 # --->
@@ -81,4 +81,4 @@ RUN git config --global user.email "apollo@devopswiki.co.uk" && \
 # ---> docker run command is issued.
 # --->
 
-ENTRYPOINT [ "/var/opt/gollum/gollum-wiki-start.sh" ]
+ENTRYPOINT [ "gollum --config=/var/opt/gollum/config.rb" ]
