@@ -68,6 +68,8 @@ RUN git config --global user.email "apollo@devopswiki.co.uk" && \
     git config --global user.name "Apollo Akora"
 
 
+EXPOSE 4567
+
 # --->
 # ---> Kick off the script within /var/opt/gollum when the
 # ---> docker run command is issued.
