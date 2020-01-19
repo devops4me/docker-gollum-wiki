@@ -41,11 +41,9 @@ RUN adduser --home /var/opt/gollum --shell /bin/bash --gecos 'Gollum Git Wiki Us
 
 
 # --->
-# ---> Copy the Gollum configuration directives file
-# ---> and install the gollum and markdown gems.
+# ---> Install gollum and other necessary ruby gems.
 # --->
 
-COPY gollum.config.ruby /var/opt/gollum/config.rb
 RUN gem install     \
     github-markdown \
     gollum          \
@@ -53,11 +51,14 @@ RUN gem install     \
 
 
 # --->
-# ---> Now switch to the lesser permissioned gollum user
+# ---> As the gollum user install the configuration file and
+# ---> prepare the wiki.dir as the git content repository.
 # --->
 
 USER gollum
-WORKDIR /var/opt/gollum
+COPY gollum.config.ruby /var/opt/gollum/config.rb
+RUN mkdir /var/opt/gollum/wiki.dir
+WORKDIR /var/opt/gollum/wiki.dir
 
 
 # --->
@@ -67,8 +68,6 @@ WORKDIR /var/opt/gollum
 RUN git config --global user.email "apollo@devopswiki.co.uk" && \
     git config --global user.name "Apollo Akora"
 
-
-EXPOSE 4567
 
 # --->
 # ---> Kick off the script within /var/opt/gollum when the
