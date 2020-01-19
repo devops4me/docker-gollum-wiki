@@ -51,14 +51,11 @@ RUN gem install     \
 
 
 # --->
-# ---> As the gollum user install the configuration file and
-# ---> prepare the wiki.dir as the git content repository.
+# ---> As gollum install the gollum configuration file
 # --->
 
 USER gollum
 COPY gollum.config.ruby /var/opt/gollum/config.rb
-RUN mkdir /var/opt/gollum/wiki.dir
-WORKDIR /var/opt/gollum/wiki.dir
 
 
 # --->
